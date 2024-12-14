@@ -1,26 +1,16 @@
 package web
 
 import (
-	"database/sql"
+	//"database/sql"
 	"fmt"
+	"Sano/database"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var db *sql.DB
-
-func init() {
-	var err error
-	
-	db, err = sql.Open("sqlite3", "./mydb.sqlite")
-	if err != nil {
-		panic(err)
-	}
-}
-
 func updatePatientRecord(patientID string, driveFileID string) error {
 
-	stmt, err := db.Prepare("UPDATE patients SET drive_file_id = ? WHERE id = ?")
+	stmt, err := db.DB.Prepare("UPDATE patients SET drive_file_id = ? WHERE id = ?")
 	if err != nil {
 		return fmt.Errorf("unable to prepare SQL statement: %v", err)
 	}

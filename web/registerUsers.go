@@ -3,18 +3,27 @@ package web
 import (
 	"github.com/gofrs/uuid"
 	"net/http"
+	"fmt"
+	"Sano/database"
+	//"database/sql"
+	// "os"
+	// "html/template"
+	// "log"
 
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type GeneralPractioner struct {
 	Id             string
-	Name           string
-	Email          string
-	Mobile         string
-	IdNumber       string
-	Specialization string
-	Location       string
-	Licence        string
+	firstName           string
+	lastName           string
+	year_of_birth          string
+	email          string
+	phone_number        string
+	doctor_id_number       string
+	title string
+	location       string
+	license_number       string
 }
 
 type patient struct {
@@ -27,23 +36,25 @@ type patient struct {
 }
 
 func RegisterGp(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodGet {
-		err = templates.ExecuteTemplate(w, "login.html", nil)
+	
+	if r.Method == http.MethodGet{
+		err = templates.ExecuteTemplate(w, "doctorRegistration.html", nil)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
 		
 	} else if r.Method == http.MethodPost {
 		r.ParseForm()
 		var gp GeneralPractioner
-		gp.Name = r.FormValue("name")
-		gp.Email = r.FormValue("email")
-		gp.Mobile = r.FormValue("mobilenumber")
-		gp.IdNumber = r.FormValue("idnumber")
-		// 	Specialization string //could be more than one
-		gp.Licence = r.FormValue("licence")
+		gp.firstName = r.FormValue("first_name")
+		gp.lastName = r.FormValue("last_name")
+		gp.email = r.FormValue("email")
+		gp.year_of_birth = r.FormValue("year_of_birth")
+		gp.doctor_id_number = r.FormValue("doctor_id_number")
+		gp.license_number = r.FormValue("license_number")
+		gp.location = r.FormValue("location")
+		gp.phone_number = r.FormValue("phone_number")
 		id, err := uuid.NewV4()
 		if err != nil {
 			http.Error(w, "Error: generating new uuid", http.StatusInternalServerError)
@@ -51,10 +62,27 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 		}
 		gp.Id = id.String()
 
+		fmt.Printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gp.firstName, gp.lastName, gp.email, gp.phone_number, gp.year_of_birth, gp.doctor_id_number,gp.location, gp.license_number)
+        // db, err := sql.Open("sqlite3", "healthDB.db")
+        // if err != nil {
+        //     http.Error(w, "Error connecting to the database", http.StatusInternalServerError)
+        //     return
+        // }
+        // defer db.Close()
 		//add function to add gp struct to the database
+		query := `
+		INSERT INTO  doctor_registration(first_name, last_name, email, year_of_birth, doctor_id_number,license_number,location, phone_number) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+		`
+		_, err = db.DB.Exec(query, gp.firstName, gp.lastName, gp.email, gp.year_of_birth, gp.doctor_id_number, gp.license_number,gp.location, gp.phone_number)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		fmt.Fprintf(w, "Registration successful! Welcome, %s", gp.firstName)
 	}
-
 }
+
 
 func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
@@ -67,10 +95,10 @@ func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 	} else if r.Method == http.MethodPost {
 		r.ParseForm()
 		var patient patient
-		patient.Name = r.FormValue("name")
-		patient.Mobile = r.FormValue("mobilenumber")
-		patient.IdNumber = r.FormValue("idnumber")
-		patient.Age = r.FormValue("Age")
+		patient.Name = r.FormValue("firstName")
+		patient.Mobile = r.FormValue("phone")
+		patient.IdNumber = r.FormValue("idNumber")
+		patient.Age = r.FormValue("yob")
 		patient.Location = r.FormValue("location")
 		id, err := uuid.NewV4()
 		if err != nil {

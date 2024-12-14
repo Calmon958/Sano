@@ -43,12 +43,13 @@ CREATE TABLE appointments (
 const doctor_reg_table string = `
 CREATE TABLE doctor_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    title TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    year_of_birth TEXT NOT NULL,
     doctor_id_number TEXT NOT NULL UNIQUE,
-    doctor_license TEXT NOT NULL UNIQUE,
-    physical_address TEXT NOT NULL,
-    organization TEXT,
+    license_number TEXT NOT NULL UNIQUE,
+    location TEXT NOT NULL,
     phone_number TEXT NOT NULL CHECK(LENGTH(phone_number) = 10 AND phone_number GLOB '[0-9]*')
 );
 `

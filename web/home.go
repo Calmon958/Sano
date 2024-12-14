@@ -25,4 +25,8 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+
+	if r.Method == http.MethodPost {
+		http.Redirect(w,r,"doctor_registration", 302)
+	}
 } 
