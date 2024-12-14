@@ -1,6 +1,6 @@
 package main
 
-import {
+import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
@@ -11,7 +11,7 @@ import {
 
 	_ "github.com/mattn/go-sqlite3"
 
-}
+)
 
 var db *sql.DB
 
@@ -20,7 +20,7 @@ func init(){
 
 	db, err := sql.Open("sqlite3", "./users.db")
 	if err != nil{
-		log.fatal("Error connecting to database: %v\n" err)
+		log.fatal("Error connecting to database: %v\n", err)
 	}
 
 
@@ -30,9 +30,8 @@ func init(){
 		phone_number TEXT NOT NULL UNIQUE,
 		ID_Number TEXT NOT NULL,
 		otp_code TEXT,
-		otp_expiry DATETIME
-	)
-	"
+		otp_expiry DATETIME,
+	)"
 
 	_, err := db.Exec(createTable)
 	if err != nil {
