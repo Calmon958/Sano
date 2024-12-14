@@ -3,7 +3,7 @@ package web
 import (
 	"github.com/gofrs/uuid"
 	"net/http"
-	"html/template"
+
 )
 
 type GeneralPractioner struct {
@@ -28,19 +28,13 @@ type patient struct {
 
 func RegisterGp(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		tmpl, err := template.ParseFiles("./assets/templatelogin.html")
-			if err != nil {
-				http.Error(w, "Error: cannot load login page", http.StatusInternalServerError)
-				return
+		err = templates.ExecuteTemplate(w, "login.html", nil)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 
-		err = tmpl.Execute(w, nil)
-			if err != nil {
-				http.Error(w, "Error: cannot load login page", http.StatusInternalServerError)
-				return
-			}
-
-		//render template
+		
 	} else if r.Method == http.MethodPost {
 		r.ParseForm()
 		var gp GeneralPractioner
@@ -64,20 +58,12 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 
 func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-
-		tmpl, err := template.ParseFiles("./assets/templatelogin.html")
-			if err != nil {
-				http.Error(w, "Error: cannot load login page", http.StatusInternalServerError)
-				return
+		err = templates.ExecuteTemplate(w, "login.html", nil)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 
-		err = tmpl.Execute(w, nil)
-			if err != nil {
-				http.Error(w, "Error: cannot load login page", http.StatusInternalServerError)
-				return
-			}
-
-		//render template
 	} else if r.Method == http.MethodPost {
 		r.ParseForm()
 		var patient patient
