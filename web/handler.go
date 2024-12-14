@@ -3,6 +3,8 @@ package web
 import (
 	"context"
 	"crypto/rand"
+	"crypto/rsa"
+	"crypto/sha256"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,6 +15,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/gorilla/websocket"
 	"google.golang.org/api/drive/v3"
 	"google.golang.org/api/option"
 )
@@ -141,4 +144,58 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 
 	http.Redirect(w, r, "/Dashboard", http.StatusSeeOther)
+}
+
+var upgradeChat = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+}
+
+func ChatHandler(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgradeChat.Upgrade(w, r, nil)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	defer conn.Close()
+
+	for {
+		var msg struct {
+			Content   string
+			Encrypted bool
+		}
+
+		err := conn.ReadJSON(&msg)
+		if err != nil {
+			log.Fatal(err)
+			break
+		}
+
+		log.Printf("Received: %v", msg.Content)
+	}
+}
+
+func generateRSAKeys() (*rsa.PrivateKey, *rsa.PublicKey) {
+	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
+	if err != nil {
+		log.Fatal("Error generating message:", err)
+	}
+	return privateKey, &privateKey.PublicKey
+}
+
+func encryptMessage(publicKey *rsa.PublicKey, message string) []byte {
+	ciphertext, err := rsa.EncryptOAEP(sha256.New(), rand.Reader, publicKey, []byte(message), nil)
+	if err != nil {
+		log.Fatal("Error encrypting message", err)
+	}
+	return ciphertext
+}
+
+func decryptMessage(privateKey *rsa.PrivateKey, ciphertext []byte) string {
+	plaintext, err := rsa.DecryptOAEP(sha256.New(), rand.Reader, privateKey, ciphertext, nil)
+	if err != nil {
+		log.Fatal("Error decrypting message:", err)
+	}
+	return string(plaintext)
 }

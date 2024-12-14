@@ -211,7 +211,7 @@
         
         // Simulate received message
         setTimeout(() => {
-          addMessage("Thank you for your message. I'/ll review it shortly.", "/received/");
+          addMessage("Thank you for your message. I'll review it shortly.", "/received/");
         }, 1000);
       }
     }
@@ -232,7 +232,26 @@
       if (e.key === 'Enter') {
         sendMessage();
       }
-    });
+    });  
+    // const ws = new WebSocket("wss://localhost:9000/ws");
+    // ws.onopen = () => {
+    //   console.log("Connected to server");
+    // }
+
+    // ws.onmessage = (event) => {
+    //   const data = JSON.parse(event.data);
+    //   if (data.encrypted) {
+    //     const decryptedMessage = decryptMessage(data.content);
+    //     displayMessage(decryptedMessage);
+    //   } else {
+    //     displayMessage(data.content);
+    //   }
+    // };
+
+    // function sendMessage(message) {
+    //   const encryptedMessage = encryptMessage(message);
+    //   ws.send(JSON.stringify({content: encryptedMessage, encrypted: true}));
+    // }
 
     fileInput.addEventListener('change', function(e) {
       attachmentPreview.innerHTML = '';
@@ -257,5 +276,24 @@
     setTimeout(() => {
       addMessage('Hello! How can I help you today?', 'received');
     }, 500);
+    // const ws = new WebSocket("wss://localhost:9000/ws");
+    // ws.onopen = () => {
+    //   console.log("Connected to server");
+    // }
+
+    // ws.onmessage = (event) => {
+    //   const data = JSON.parse(event.data);
+    //   if (data.encrypted) {
+    //     const decryptedMessage = decryptMessage(data.content);
+    //     displayMessage(decryptedMessage);
+    //   } else {
+    //     displayMessage(data.content);
+    //   }
+    // };
+
+    // function sendMessage(message) {
+    //   const encryptedMessage = encryptMessage(message);
+    //   ws.send(JSON.stringify({content: encryptedMessage, encrypted: true}));
+    // }
   </script>
 </body></html>

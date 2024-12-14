@@ -51,7 +51,7 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 		}
 		gp.Id = id.String()
 
-		//add function to add gp struct to the database
+		//add function to addb
 	}
 
 }
