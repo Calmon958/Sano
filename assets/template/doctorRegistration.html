@@ -119,30 +119,35 @@
 
 <div class="signup-container">
   <h1>Doctor Registration</h1>
-  <form id="doctorSignup" onsubmit="return validateForm(event)">
+  <form id="doctorSignup" action="/register" method="post">
     <div class="form-group">
       <label for="firstName">First Name*</label>
-      <input type="text" id="firstName" name="firstName" required>
+      <input type="text" id="first_name" name="first_name" required>
     </div>
 
     <div class="form-group">
       <label for="lastName">Last Name*</label>
-      <input type="text" id="lastName" name="lastName" required>
+      <input type="text" id="last_name" name="last_name" required>
     </div>
 
     <div class="form-group">
       <label for="idNumber">ID Number*</label>
-      <input type="text" id="idNumber" name="idNumber" required>
+      <input type="text" id="doctor_id_number" name="doctor_id_number" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input type="text" id="email" name="email" required>
     </div>
 
     <div class="form-group">
       <label for="phone">Phone Number*</label>
-      <input type="tel" id="phone" name="phone" pattern="[0-9+\-\s]+" placeholder="+254 720198310" required>
+      <input type="tel" id="phone_number" name="phone_number" pattern="[0-9+\-\s]+" placeholder="+254 720198310" required>
     </div>
 
     <div class="form-group">
       <label for="yob">Year of Birth*</label>
-      <input type="number" id="yob" name="yob" min="1923" max="2005" required>
+      <input type="number" id="year_of_birth" name="year_of_birth" min="1923" max="2005" required>
     </div>
 
     <div class="form-group">
@@ -152,10 +157,10 @@
 
     <div class="form-group">
       <label for="licenseNumber">Medical License Number*</label>
-      <input type="text" id="licenseNumber" name="licenseNumber" required>
+      <input type="text" id="license_number" name="license_number" required>
     </div>
 
-    <div class="form-group">
+   <!-- <div class="form-group">
       <label>Medical License Copy (PDF)*</label>
       <div class="file-upload" onclick="document.getElementById('licenseFile').click()">
         <div class="upload-icon">📄</div>
@@ -173,7 +178,7 @@
         <p class="file-name" id="certFileName"></p>
         <input type="file" id="certificationsFile" accept=".pdf" style="display: none">
       </div>
-    </div>
+    </div> -->
 
     <button type="submit">Submit Registration</button>
   </form>
@@ -190,49 +195,7 @@ document.getElementById('certificationsFile').addEventListener('change', functio
   document.getElementById('certFileName').textContent = fileName || '';
 });
 
-function validateForm(event) {
-  event.preventDefault();
-  
-  const yob = parseInt(document.getElementById('yob').value);
-  const currentYear = new Date().getFullYear();
-  
-  if (yob > currentYear - 18) {
-    alert('You must be at least 18 years old to register.');
-    return false;
-  }
-  
-  if (yob < currentYear - 100) {
-    alert('Please enter a valid year of birth.');
-    return false;
-  }
 
-  const phone = document.getElementById('phone').value;
-  if (!/^[0-9+\-\s]+$/.test(phone)) {
-    alert('Please enter a valid phone number.');
-    return false;
-  }
-
-  const licenseFile = document.getElementById('licenseFile').files[0];
-  if (!licenseFile) {
-    alert('Please upload your medical license.');
-    return false;
-  }
-
-  if (licenseFile.type !== 'application/pdf') {
-    alert('Please upload medical license in PDF format.');
-    return false;
-  }
-
-  const certFile = document.getElementById('certificationsFile').files[0];
-  if (certFile && certFile.type !== 'application/pdf') {
-    alert('Please upload certifications in PDF format.');
-    return false;
-  }
-
-  // If all validations pass, you would typically submit the form to a server
-  alert('Registration submitted successfully!');
-  return true;
-}
 
 // Set max year of birth to current year - 18
 document.getElementById('yob').max = new Date().getFullYear() - 18;
