@@ -1,27 +1,27 @@
 package web
 
 import (
-	"net/http"
 	"github.com/gofrs/uuid"
+	"net/http"
 )
 
-type GeneralPractioner struct{
-	Id string
-	Name string
-	Email string
-	Mobile string
-	IdNumber string
+type GeneralPractioner struct {
+	Id             string
+	Name           string
+	Email          string
+	Mobile         string
+	IdNumber       string
 	Specialization string
-	Location string
-	Licence string
+	Location       string
+	Licence        string
 }
 
-type patient struct{
-	Id string
-	Name string
+type patient struct {
+	Id       string
+	Name     string
 	IdNumber string
-	Mobile string
-	Age string
+	Mobile   string
+	Age      string
 	Location string
 }
 
@@ -48,8 +48,6 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
-
-
 
 func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
