@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HouseCall MD Dashboard</title>
+    <title>HouseCall MD</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css">
     <style>
-        .card:hover {
+        .service-card:hover {
             transform: scale(1.05);
             transition: transform 0.3s;
         }
-        .card {
+        .service-card {
             transition: transform 0.3s;
+            cursor: pointer;
         }
         .icon {
             font-size: 1.5rem;
@@ -59,35 +61,19 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="card text-white bg-primary mb-3">
+                    <div class="col-md-4">
+                        <div class="card service-card" data-toggle="modal" data-target="#urgentCareModal">
                             <div class="card-body">
-                                <h5 class="card-title">Today's Appointments</h5>
-                                <p class="card-text">12</p>
+                                <h5 class="card-title"><i class="fas fa-clock icon"></i> Book Urgent Care</h5>
+                                <p class="card-text">Request immediate house call</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-success mb-3">
+                    <div class="col-md-4">
+                        <div class="card service-card" data-toggle="modal" data-target="#scheduleVisitModal">
                             <div class="card-body">
-                                <h5 class="card-title">This Week's Appointments</h5>
-                                <p class="card-text">45</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-warning mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">This Month's Appointments</h5>
-                                <p class="card-text">156</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-danger mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Follow-ups Due</h5>
-                                <p class="card-text">8</p>
+                                <h5 class="card-title"><i class="fas fa-calendar-alt icon"></i> Schedule Visit</h5>
+                                <p class="card-text">Book a future appointment</p>
                             </div>
                         </div>
                     </div>
@@ -97,91 +83,69 @@
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">John Doe</h5>
-                            <small>10:00 AM (Regular Checkup)</small>
+                            <h5 class="mb-1">Dr. Sarah Johnson</h5>
+                            <small>Tomorrow at 10:00 AM</small>
                         </div>
-                        <p class="mb-1">Option to Reschedule or Cancel</p>
+                        <p class="mb-1">House Call - Regular Checkup</p>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Jane Smith</h5>
-                            <small>11:30 AM (Follow-up: Blood Pressure)</small>
+                            <h5 class="mb-1">Dr. Michael Chen</h5>
+                            <small>Friday at 2:30 PM</small>
                         </div>
-                        <p class="mb-1">Option to Reschedule or Cancel</p>
+                        <p class="mb-1">Video Consultation - Follow-up</p>
                     </a>
-                </div>
-
-                <h2>Set Availability</h2>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">9:00 AM</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">10:00 AM</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">11:00 AM</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">2:00 PM</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">3:00 PM</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">4:00 PM</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2>Recent Visit Summary</h2>
-                <div class="card bg-light mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Patient: John Doe</h5>
-                        <p class="card-text">Date: 2024-01-15</p>
-                        <p class="card-text">Symptoms: Headache, Fever</p>
-                        <p class="card-text">Prescription:</p>
-                        <ul>
-                            <li>Paracetamol 500mg - 1-0-1</li>
-                            <li>Vitamin C 500mg - 0-1-0</li>
-                        </ul>
-                        <p class="card-text">Test Results:</p>
-                        <ul>
-                            <li>Blood Pressure: 120/80</li>
-                            <li>Temperature: 99°F</li>
-                        </ul>
-                        <p class="card-text">Follow-up Required: Yes</p>
-                        <a href="#" class="btn btn-primary">Schedule Follow-up</a>
-                    </div>
                 </div>
             </main>
         </div>
     </div>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Urgent Care Modal -->
+    <div class="modal fade" id="urgentCareModal" tabindex="-1" role="dialog" aria-labelledby="urgentCareModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="urgentCareModalLabel">Book Urgent Care</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="urgentDate">Select Date & Time:</label>
+                    <input type="datetime-local" id="urgentDate" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Visit Modal -->
+    <div class="modal fade" id="scheduleVisitModal" tabindex="-1" role="dialog" aria-labelledby="scheduleVisitModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scheduleVisitModalLabel">Schedule Visit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="scheduleDate">Select Date:</label>
+                    <input type="date" id="scheduleDate" class="form-control">
+                    <label for="scheduleTime" class="mt-3">Select Time:</label>
+                    <input type="time" id="scheduleTime" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
