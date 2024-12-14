@@ -1,6 +1,5 @@
 package db
 
-
 const patients_table  string = `
 CREATE TABLE patients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
