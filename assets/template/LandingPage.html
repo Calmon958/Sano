@@ -213,6 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+  workerBtn.onclick = () => {
+    window.location.href = 'https://example.com/register/health-worker';
+  };
 
   // Add intersection observer for animation
   const observer = new IntersectionObserver((entries) => {
@@ -264,8 +267,14 @@ function showRegistrationPopup() {
   title.style.marginBottom = '1.5rem';
   title.style.color = 'var(--primary)';
 
+  // Create the patient registration form
+  const patientForm = document.createElement('form');
+  patientForm.action = '/PatientReg';  // Action for patient registration
+  patientForm.method = 'GET';  // Method for form submission
+
   const patientBtn = document.createElement('button');
   patientBtn.textContent = 'Register as Patient';
+  patientBtn.type = 'submit';  // Type submit makes it submit the form
   patientBtn.style.cssText = `
     display: block;
     width: 100%;
@@ -278,12 +287,16 @@ function showRegistrationPopup() {
     cursor: pointer;
     font-weight: 600;
   `;
-  patientBtn.onclick = () => {
-    window.location.href = 'https://example.com/register/patient';
-  };
+  patientForm.appendChild(patientBtn);  // Append button to form
 
+  // Create the health worker registration form
+  const workerForm = document.createElement('form');
+  workerForm.action = '/DocReg';  // Action for health worker registration
+  workerForm.method = 'GET';  // Method for form submission
+  
   const workerBtn = document.createElement('button');
   workerBtn.textContent = 'Register as Health Worker';
+  workerBtn.type = 'submit';  // Type submit makes it submit the form
   workerBtn.style.cssText = `
     display: block;
     width: 100%;
@@ -296,10 +309,9 @@ function showRegistrationPopup() {
     cursor: pointer;
     font-weight: 600;
   `;
-  workerBtn.onclick = () => {
-    window.location.href = 'https://example.com/register/health-worker';
-  };
+  workerForm.appendChild(workerBtn);  // Append button to form
 
+  // Close button for the popup
   const closeBtn = document.createElement('button');
   closeBtn.innerHTML = '&times;';
   closeBtn.style.cssText = `
@@ -318,8 +330,8 @@ function showRegistrationPopup() {
 
   content.appendChild(closeBtn);
   content.appendChild(title);
-  content.appendChild(patientBtn);
-  content.appendChild(workerBtn);
+  content.appendChild(patientForm);  // Append patient form
+  content.appendChild(workerForm);   // Append worker form
   popup.appendChild(content);
   document.body.appendChild(popup);
 
@@ -363,8 +375,15 @@ function showLoginPopup() {
   title.style.marginBottom = '1.5rem';
   title.style.color = 'var(--primary)';
 
+  // Create the patient login form// Add popup functionality for registration
+
+  const patientForm = document.createElement('form');
+  patientForm.action = 'https://example.com/login/patient';  // Action for patient login
+  patientForm.method = 'GET';  // Method for form submission
+
   const patientBtn = document.createElement('button');
   patientBtn.textContent = 'Login as Patient';
+  patientBtn.type = 'submit';  // Type submit makes it submit the form
   patientBtn.style.cssText = `
     display: block;
     width: 100%;
@@ -377,12 +396,16 @@ function showLoginPopup() {
     cursor: pointer;
     font-weight: 600;
   `;
-  patientBtn.onclick = () => {
-    window.location.href = 'https://example.com/login/patient';
-  };
+  patientForm.appendChild(patientBtn);  // Append button to form
 
+  // Create the health worker login form
+  const workerForm = document.createElement('form');
+  workerForm.action = 'https://example.com/login/health-worker';  // Action for health worker login
+  workerForm.method = 'GET';  // Method for form submission
+  
   const workerBtn = document.createElement('button');
   workerBtn.textContent = 'Login as Health Worker';
+  workerBtn.type = 'submit';  // Type submit makes it submit the form
   workerBtn.style.cssText = `
     display: block;
     width: 100%;
@@ -395,10 +418,9 @@ function showLoginPopup() {
     cursor: pointer;
     font-weight: 600;
   `;
-  workerBtn.onclick = () => {
-    window.location.href = 'https://example.com/login/health-worker';
-  };
+  workerForm.appendChild(workerBtn);  // Append button to form
 
+  // Close button for the popup
   const closeBtn = document.createElement('button');
   closeBtn.innerHTML = '&times;';
   closeBtn.style.cssText = `
@@ -417,8 +439,8 @@ function showLoginPopup() {
 
   content.appendChild(closeBtn);
   content.appendChild(title);
-  content.appendChild(patientBtn);
-  content.appendChild(workerBtn);
+  content.appendChild(patientForm);  // Append patient form
+  content.appendChild(workerForm);   // Append worker form
   popup.appendChild(content);
   document.body.appendChild(popup);
 
@@ -429,6 +451,7 @@ function showLoginPopup() {
     }
   });
 }
+
 </script>
 </div>
 </body></html>
