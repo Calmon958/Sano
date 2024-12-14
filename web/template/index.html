@@ -1,146 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sano Health</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: url('https://example.com/hospital-background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            padding-top: 80px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        /* Hero Section */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5); /* Overlay to improve text visibility */
-        }
-        .hero-section h1 {
-            font-size: 3rem;
-        }
-        .hero-section p {
-            font-size: 1.2rem;
-        }
-        /* Service Cards */
-        .service-card {
-            transition: transform 0.3s;
-            margin-bottom: 30px;
-        }
-        .service-card:hover {
-            transform: scale(1.05);
-        }
-        .card-body {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
-            padding: 30px;  /* Add padding for better spacing */
-            border-radius: 10px;
-            color: #333;  /* Darker text color for better contrast */
-        }
-        .card-body h5 {
-            color: #007bff;  /* Blue color for headings */
-        }
-        .card-body p {
-            color: #333;  /* Dark text for paragraphs */
-        }
-        /* Footer */
-        footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            width: 100%;
-        }
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        /* Make content responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            .hero-section p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthConnect - Your Patient Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #4299e1;
+      --accent: #48bb78;
+      --light: #f7fafc;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--light);
+      color: #2d3748;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .hero h1 {
+      color: var(--primary);
+    }
+
+    .cta-button {
+      background-color: var(--accent);
+      color: white;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      max-width: 100%;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: rotate(10deg);
+    }
+
+    .animated-icon {
+      animation: pulse 2s infinite;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .cta-button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .feature-card {
+        margin-bottom: 20px;
+      }
+    }
+
+    main {
+      min-height: 70vh; /* Ensures the main content takes at least 70% of the viewport height */
+    }
+
+    footer {
+      margin-top: auto; /* Pushes the footer to the bottom if content is short */
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="#">Sano Health</a>
-        <div class="collapse navbar-collapse">
-            <form class="form-inline my-2 my-lg-0 ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="What would you like to change?" aria-label="Search">
-            </form>
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="button" onclick="location.href='doctor_login.html'">Doctor Login</button>
-            <button class="btn btn-outline-secondary my-2 my-sm-0 ml-2" type="button" onclick="location.href='patient_login.html'">Patient Login</button>
-        </div>
-    </nav>
+<header class="header py-3 shadow-sm">
+  <nav class="container navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="me-2">
+        <path d="M20 0C8.954 0 0 8.954 0 20s8.954 20 20 20 20-8.954 20-20S31.046 0 20 0zm0 36c-8.837 0-16-7.163-16-16S11.163 4 20 4s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+        <path d="M20 8v24M8 20h24" stroke="white" stroke-width="4"/>
+      </svg>
+      <span class="fs-4">HealthConnect</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="patient_login.html" class="nav-link text-white">Patient Login</a></li>
+        <li class="nav-item"><a href="doctor_login.html" class="nav-link text-white">Doctor Login</a></li>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="container">
-            <h1 class="display-4">Healthcare at Your Doorstep</h1>
-            <p class="lead">Experience the convenience of professional medical care in the comfort of your home.</p>
-        </div>
+      </ul>
     </div>
+  </nav>
+</header>
 
-    <!-- Service Cards -->
-    <div class="container text-center mt-5">
-        <div class="row">
-            <div class="col-md-4 col-12">
-                <div class="card service-card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-clock icon"></i> 24/7 Availability</h5>
-                        <p class="card-text">Round-the-clock medical assistance whenever you need it.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="card service-card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-user-md icon"></i> Qualified Doctors</h5>
-                        <p class="card-text">Expert healthcare professionals at your service.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="card service-card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-comments icon"></i> Easy Communication</h5>
-                        <p class="card-text">Direct communication with healthcare providers.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<main>
+  <section class="hero py-5">
+    <div class="container d-flex flex-column flex-lg-row align-items-center gap-4">
+      <div class="text-center text-lg-start flex-grow-1">
+        <h1 class="display-4 mb-3">Your Health, Connected</h1>
+        <p class="fs-5 mb-4">Access your healthcare information, schedule appointments, and communicate with your doctor - all in one secure platform.</p>
+        <a href="https://example.com/register" class="btn cta-button px-4 py-2">Get Started</a>
+      </div>
+      <div class="text-center flex-grow-1">
+        <svg class="animated-icon" viewBox="0 0 400 400" fill="none">
+          <circle cx="200" cy="200" r="180" stroke="var(--secondary)" stroke-width="4"/>
+          <path d="M200 100v200M100 200h200" stroke="var(--accent)" stroke-width="8"/>
+          <circle cx="200" cy="200" r="60" fill="var(--primary)"/>
+        </svg>
+      </div>
     </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Sano Health. All rights reserved. | <a href="#">Privacy Policy</a></p>
-    </footer>
+  <section class="features py-5 bg-white">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card p-4 text-center shadow-sm rounded bg-light">
+            <svg class="feature-icon mb-3" viewBox="0 0 64 64" fill="var(--primary)">
+              <path d="M32 0C14.327 0 0 14.327 0 32s14.327 32 32 32 32-14.327 32-32S49.673 0 32 0zm0 58C17.641 58 6 46.359 6 32S17.641 6 32 6s26 11.641 26 26-11.641 26-26 26z"/>
+              <path d="M32 16v16h16"/>
+            </svg>
+            <h3 class="h5">24/7 Access</h3>
+            <p class="text-muted">View your medical records and test results anytime, anywhere.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card p-4 text-center shadow-sm rounded bg-light">
+            <svg class="feature-icon mb-3" viewBox="0 0 64 64" fill="var(--primary)">
+              <rect x="8" y="8" width="48" height="48" rx="4"/>
+              <path d="M20 32h24M32 20v24" stroke="white" stroke-width="4"/>
+            </svg>
+            <h3 class="h5">Online Appointments</h3>
+            <p class="text-muted">Schedule and manage your appointments with ease.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card p-4 text-center shadow-sm rounded bg-light">
+            <svg class="feature-icon mb-3" viewBox="0 0 64 64" fill="var(--primary)">
+              <circle cx="32" cy="32" r="24"/>
+              <path d="M24 32s6 8 16 0" stroke="white" stroke-width="4"/>
+            </svg>
+            <h3 class="h5">Secure Messaging</h3>
+            <p class="text-muted">Communicate directly with your healthcare team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <!-- Font Awesome and JS -->
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<footer class="py-4 bg-dark text-white">
+  <div class="container text-center">
+    <p class="mb-1">&copy; 2024 HealthConnect. All Rights Reserved.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+      <li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+      <li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
