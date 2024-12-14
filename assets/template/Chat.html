@@ -1,0 +1,314 @@
+<html><head><base href="https://sano-health.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sano Healthcare - Patient Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary-color: #2C7A7B;
+  --secondary-color: #81E6D9;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f7fafc;
+}
+
+.sidebar {
+  background: var(--primary-color);
+  min-height: 100vh;
+  color: white;
+}
+
+.nav-link {
+  color: white;
+  padding: 15px;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  background: var(--secondary-color);
+  color: #2D3748;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.appointment-card {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px);
+}
+
+.document-card {
+  border: 2px dashed #CBD5E0;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.doctor-card {
+  border: none;
+  transition: all 0.3s;
+}
+
+.doctor-card:hover {
+  transform: scale(1.02);
+}
+
+.time-slot {
+  border: 1px solid #E2E8F0;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.time-slot:hover {
+  background: var(--secondary-color);
+}
+
+.time-slot.selected {
+  background: var(--primary-color);
+  color: white;
+}
+
+.health-metric {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+</style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-2 sidebar p-0">
+    <div class="d-flex flex-column align-items-center p-4">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" fill="var(--secondary-color)"></circle>
+            <path d="M15 25h20M25 15v20" stroke="var(--primary-color)" stroke-width="4"></path>
+        </svg>
+        <h4 class="mt-3">Sano Health</h4>
+    </div>
+    <nav class="nav flex-column">
+        <a class="nav-link active" href="#dashboard" onclick="showSection('dashboard')">
+            <i class="fas fa-home me-2"></i>Dashboard
+        </a>
+        <a class="nav-link" href="#records" onclick="showSection('records')">
+            <i class="fas fa-history me-2"></i>Records
+        </a>
+        <a class="nav-link" href="#chat" onclick="showSection('chat')">
+            <i class="fas fa-comments me-2"></i>Chat
+        </a>
+        <a class="nav-link" href="#documents" onclick="showSection('documents')">
+            <i class="fas fa-file-medical me-2"></i>Documents
+        </a>
+        <a class="nav-link" href="#profile" onclick="showSection('profile')">
+            <i class="fas fa-user me-2"></i>Profile
+        </a>
+    </nav>
+</div>
+
+    <!-- Main Content -->
+    <div class="col-md-10 main-content">
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <h2>Chat with Healthcare Providers</h2>
+      <p class="text-muted">Connect with your doctors and care team</p>
+    </div>
+  </div>
+
+  <!-- Chat Interface -->
+  <div class="row">
+    <div class="col-md-4">
+      <!-- Contact List -->
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action active" onclick="return false;">
+              <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-primary text-white p-2 me-3">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div>
+                  <h6 class="mb-1">Dr. Sarah Johnson</h6>
+                  <small>General Physician</small>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" onclick="return false;">
+              <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-secondary text-white p-2 me-3">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div>
+                  <h6 class="mb-1">Dr. Michael Smith</h6>
+                  <small>Dentist</small>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" onclick="return false;">
+              <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-info text-white p-2 me-3">
+                  <i class="fas fa-user-nurse"></i>
+                </div>
+                <div>
+                  <h6 class="mb-1">Nurse Jessica</h6>
+                  <small>Care Coordinator</small>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <!-- Chat Window -->
+      <div class="card">
+        <div class="card-header bg-white">
+          <div class="d-flex align-items-center">
+            <div class="rounded-circle bg-primary text-white p-2 me-3">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div>
+              <h5 class="mb-0">Dr. Sarah Johnson</h5>
+              <small class="text-muted">Last active: 5 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" style="height: 400px; overflow-y: auto;">
+          <div class="d-flex mb-3">
+            <div class="rounded-circle bg-primary text-white p-2 me-2" style="height: fit-content;">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="bg-light p-3 rounded" style="max-width: 75%;">
+              <p class="mb-0">Hello! How can I help you today?</p>
+              <small class="text-muted">10:30 AM</small>
+            </div>
+          </div>
+          <div class="d-flex flex-row-reverse mb-3">
+            <div class="bg-primary text-white p-3 rounded" style="max-width: 75%;">
+              <p class="mb-0">Hi Dr. Johnson, I've been experiencing mild headaches lately.</p>
+              <small class="text-white-50">10:31 AM</small>
+            </div>
+          </div>
+          <div class="d-flex mb-3">
+            <div class="rounded-circle bg-primary text-white p-2 me-2" style="height: fit-content;">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="bg-light p-3 rounded" style="max-width: 75%;">
+              <p class="mb-0">I'm sorry to hear that. How long have you been experiencing these headaches? Are they occurring at any particular time of day?</p>
+              <small class="text-muted">10:32 AM</small>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-white">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Type your message...">
+            <button class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-outline-secondary me-2">
+              <i class="fas fa-paperclip"></i> Attach
+            </button>
+            <button class="btn btn-sm btn-outline-secondary">
+              <i class="fas fa-image"></i> Image
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+<!-- New Appointment Modal -->
+<div class="modal fade" id="appointmentModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Schedule New Appointment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+  <div class="col-md-12">
+  <div class="mb-4">
+    <h6>Select Date</h6>
+    <input type="date" class="form-control" id="appointmentDate" min="2023-06-14">
+  </div>
+  <h6>Select Available Time Slot</h6>
+  <div class="d-flex flex-wrap">
+    <div class="time-slot">09:00 AM</div>
+    <div class="time-slot">10:00 AM</div>
+    <div class="time-slot">11:00 AM</div>
+    <div class="time-slot">02:00 PM</div>
+    <div class="time-slot">03:00 PM</div>
+    <div class="time-slot">04:00 PM</div>
+  </div>
+</div>
+</div>
+        <div class="mt-4">
+          <h6>Appointment Details</h6>
+          <textarea class="form-control" rows="3" placeholder="Describe your symptoms or reason for visit"></textarea>
+        </div>
+        <div class="mt-4">
+          <h6>Upload Documents (if any)</h6>
+          <input type="file" class="form-control" multiple="">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Schedule Appointment</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Time slot selection
+  const timeSlots = document.querySelectorAll('.time-slot');
+  timeSlots.forEach(slot => {
+    slot.addEventListener('click', function() {
+      timeSlots.forEach(s => s.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+
+  // File upload handling
+  const fileInput = document.querySelector('input[type="file"]');
+  fileInput.addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+    console.log('Files selected:', files.map(f => f.name));
+  });
+
+  // Appointment scheduling
+  const scheduleBtn = document.querySelector('.modal-footer .btn-primary');
+  scheduleBtn.addEventListener('click', function() {
+    // Add your appointment scheduling logic here
+    console.log('Scheduling appointment...');
+    // Close modal after successful scheduling
+    const modal = bootstrap.Modal.getInstance(document.getElementById('appointmentModal'));
+    modal.hide();
+  });
+});
+</script>
+</body></html>
