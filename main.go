@@ -1,14 +1,9 @@
 package main
 
-import {
-	"database/sql"
-	"encoding/json"
-	"fmt"
-	"log"
-	"math/rand"
-	"net/http"
-	"time"
+// import(
+// 	"fmt"
+// )
 
-	_ "github.com/lib/pq"
-
+func main(){
+	
 }
