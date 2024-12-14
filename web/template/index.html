@@ -6,21 +6,84 @@
     <title>Sano Health</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .service-card:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s;
+        body {
+            background: url('https://example.com/hospital-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            padding-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5); /* Overlay to improve text visibility */
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+        }
+        .hero-section p {
+            font-size: 1.2rem;
+        }
+        /* Service Cards */
         .service-card {
             transition: transform 0.3s;
+            margin-bottom: 30px;
         }
-        .icon {
-            font-size: 1.5rem;
-            margin-right: 10px;
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+        .card-body {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
+            padding: 30px;  /* Add padding for better spacing */
+            border-radius: 10px;
+            color: #333;  /* Darker text color for better contrast */
+        }
+        .card-body h5 {
+            color: #007bff;  /* Blue color for headings */
+        }
+        .card-body p {
+            color: #333;  /* Dark text for paragraphs */
+        }
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        /* Make content responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <a class="navbar-brand" href="#">Sano Health</a>
         <div class="collapse navbar-collapse">
             <form class="form-inline my-2 my-lg-0 ml-auto">
@@ -30,37 +93,51 @@
             <button class="btn btn-outline-secondary my-2 my-sm-0 ml-2" type="button" onclick="location.href='patient_login.html'">Patient Login</button>
         </div>
     </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Healthcare at Your Doorstep</h1>
+            <p class="lead">Experience the convenience of professional medical care in the comfort of your home.</p>
+        </div>
+    </div>
+
+    <!-- Service Cards -->
     <div class="container text-center mt-5">
-        <h1>Healthcare at Your Doorstep</h1>
-        <p>Experience the convenience of professional medical care in the comfort of your home.</p>
-        <button class="btn btn-primary btn-lg mb-5">Get Started</button>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 col-12">
                 <div class="card service-card">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-clock icon"></i> 24/7 Availability</h5>
-                        <p class="card-text">Round-the-clock medical assistance whenever you need it</p>
+                        <p class="card-text">Round-the-clock medical assistance whenever you need it.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-12">
                 <div class="card service-card">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-user-md icon"></i> Qualified Doctors</h5>
-                        <p class="card-text">Expert healthcare professionals at your service</p>
+                        <p class="card-text">Expert healthcare professionals at your service.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-12">
                 <div class="card service-card">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-comments icon"></i> Easy Communication</h5>
-                        <p class="card-text">Direct communication with healthcare providers</p>
+                        <p class="card-text">Direct communication with healthcare providers.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sano Health. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <!-- Font Awesome and JS -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
