@@ -1,4 +1,4 @@
 format :
-	gofmt -w -s .
+	@gofmt -w -s .
 run :
-	go run .
+	@go run .
