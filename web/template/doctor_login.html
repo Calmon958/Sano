@@ -5,21 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // Function to toggle between the login and signup forms
+        function toggleForms() {
+            var loginForm = document.getElementById('loginForm');
+            var signupForm = document.getElementById('signupForm');
+            var toggleButton = document.getElementById('toggleButton');
+            
+            // Toggle visibility
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                signupForm.style.display = "none";
+                toggleButton.innerText = "Don't have an account? Sign Up";
+            } else {
+                loginForm.style.display = "none";
+                signupForm.style.display = "block";
+                toggleButton.innerText = "Already have an account? Login";
+            }
+        }
+    </script>
+    <style>
+        /* Center the content vertically and horizontally */
+        .full-height {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="container text-center mt-5">
-        <h1>Doctor Login</h1>
-        <form class="mt-4" action="/doctor_dashboard" method="POST">
-            <div class="form-group">
-                <label for="licenseNumber">License Number</label>
-                <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" required>
+    <div class="container full-height">
+        <div class="text-center">
+            <h1>Doctor Login</h1>
+
+            <!-- Login Form (Initially visible) -->
+            <div id="loginForm" class="row justify-content-center" style="width: 100%; max-width: 500px;">
+                <form class="mt-4" action="/doctor_dashboard" method="POST">
+                    <div class="form-group">
+                        <label for="licenseNumber">License Number</label>
+                        <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="phoneNumber">Phone Number</label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+
+            <!-- Signup Form (Initially hidden) -->
+            <div id="signupForm" class="row justify-content-center" style="width: 100%; max-width: 500px; display: none;">
+                <form class="mt-4" action="/doctor_signup" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="newLicenseNumber">License Number</label>
+                        <input type="text" class="form-control" id="newLicenseNumber" name="newLicenseNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPhoneNumber">Phone Number</label>
+                        <input type="text" class="form-control" id="newPhoneNumber" name="newPhoneNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <!-- File Upload for Credentials -->
+                    <div class="form-group">
+                        <label for="credentials">Upload Credentials</label>
+                        <input type="file" class="form-control-file" id="credentials" name="credentials" accept=".pdf,.jpg,.png,.jpeg" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+
+            <!-- Toggle Button -->
+            <button id="toggleButton" class="btn btn-link mt-3" onclick="toggleForms()">Don't have an account? Sign Up</button>
+        </div>
     </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
