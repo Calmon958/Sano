@@ -5,21 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Center the form vertically and horizontally */
+        .full-height {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
 </head>
-<body>
-    <div class="container text-center mt-5">
-        <h1>Patient Login</h1>
-        <form class="mt-4" action="/patient_dashboard" method="POST">
-            <div class="form-group">
-                <label for="idNumber">ID Number</label>
-                <input type="text" class="form-control" id="idNumber" name="idNumber" required>
+<body class="bg-light">
+    <div class="container full-height">
+        <div class="form-container">
+            <h1 class="text-center mb-4">Patient Login</h1>
+
+            <!-- Login Form -->
+            <form id="loginForm" action="/patient_dashboard" method="POST">
+                <div class="form-group">
+                    <label for="idNumber">ID Number</label>
+                    <input type="text" class="form-control" id="idNumber" name="idNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+
+            <!-- Signup Form (hidden by default) -->
+            <form class="mt-4" id="signupForm" action="/signup" method="POST" style="display:none;">
+                <div class="form-group">
+                    <label for="signupIdNumber">ID Number</label>
+                    <input type="text" class="form-control" id="signupIdNumber" name="idNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" class="form-control" id="signupEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPhoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" id="signupPhoneNumber" name="phoneNumber" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+
+            <!-- Toggle buttons -->
+            <div class="mt-3 text-center">
+                <button class="btn btn-link" id="toggleToSignup" onclick="toggleForm()">Create an account</button>
+                <button class="btn btn-link" id="toggleToLogin" onclick="toggleForm()" style="display:none;">Already have an account? Login</button>
             </div>
-            <div class="form-group">
-                <label for="phoneNumber">Phone Number</label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
-            </div>
-            <button type="submit" class="btn btn-secondary">Login</button>
-        </form>
+        </div>
     </div>
+
+    <script>
+        function toggleForm() {
+            var loginForm = document.getElementById("loginForm");
+            var signupForm = document.getElementById("signupForm");
+            var toggleToSignup = document.getElementById("toggleToSignup");
+            var toggleToLogin = document.getElementById("toggleToLogin");
+
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                signupForm.style.display = "none";
+                toggleToSignup.style.display = "block";
+                toggleToLogin.style.display = "none";
+            } else {
+                loginForm.style.display = "none";
+                signupForm.style.display = "block";
+                toggleToSignup.style.display = "none";
+                toggleToLogin.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
