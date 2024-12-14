@@ -1,15 +1,17 @@
-package main
+package db
+import(
+	"log"
+	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
+)
+
 var (
 	DB *sql.DB
 	err error
 )
 
-func main(){
-
-}
-
 func InitDB(){
-	DB, err = sql.Open("sqlite3", "./db/healthDB.db")
+	DB, err = sql.Open("sqlite3", "./database/healthDB.db")
 	if err != nil {
 		log.Fatal(err)
 		return

@@ -1,12 +1,18 @@
+package db
+
+
+const patients_table  string = `
 CREATE TABLE patients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     phone_number TEXT NOT NULL UNIQUE,
     id_number TEXT NOT NULL,
     otp_code TEXT,
     otp_expiry DATETIME
-);
+); 
+`
 
--- create patient registration table
+//-- create patient registration table
+const patient_reg_table  string = `
 CREATE TABLE patient_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -15,8 +21,10 @@ CREATE TABLE patient_registration (
     physical_address TEXT NOT NULL,
     phone_number TEXT NOT NULL CHECK(LENGTH(phone_number) = 10 AND phone_number GLOB '[0-9]*')
 );
+`
 
 
+const apppointments_table string = `
 CREATE TABLE appointments (
     appointment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     patient_id TEXT NOT NULL UNIQUE,
@@ -30,9 +38,10 @@ CREATE TABLE appointments (
     FOREIGN KEY (doctor_id) REFERENCES doctor_registration (license)
 
 
-)
+);
+`
 
--- doctor registration
+const doctor_reg_table string = `
 CREATE TABLE doctor_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -43,7 +52,9 @@ CREATE TABLE doctor_registration (
     organization TEXT,
     phone_number TEXT NOT NULL CHECK(LENGTH(phone_number) = 10 AND phone_number GLOB '[0-9]*')
 );
+`
 
+const doctor_report_table string =`
 CREATE TABLE doctor_report (
     report_id INTEGER PRIMARY KEY AUTOINCREMENT,
     report_name TEXT NOT NULL,
@@ -52,4 +63,7 @@ CREATE TABLE doctor_report (
     upload_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     doctor_id TEXT NOT NULL,
     FOREIGN KEY (doctor_id) REFERENCES doctor_registration (doctor_license)
-)
+);
+`
+
+var Tables = []string{patients_table, patient_reg_table, apppointments_table, doctor_reg_table, doctor_report_table}

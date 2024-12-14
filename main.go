@@ -1,8 +1,9 @@
 package main
 
-import {
+import (
 	"database/sql"
 	"encoding/json"
+	"Sano/database"
 	"fmt"
 	"log"
 	"math/rand"
@@ -11,34 +12,7 @@ import {
 
 	_ "github.com/mattn/go-sqlite3"
 
-}
-
-var db *sql.DB
-
-func init(){
-	var err error
-
-	db, err := sql.Open("sqlite3", "./users.db")
-	if err != nil{
-		log.fatal("Error connecting to database: %v\n" err)
-	}
-
-
-	createTable := "
-	CREATE TABLE IF NOT EXSISTS users (
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		phone_number TEXT NOT NULL UNIQUE,
-		ID_Number TEXT NOT NULL,
-		otp_code TEXT,
-		otp_expiry DATETIME
-	)
-	"
-
-	_, err := db.Exec(createTable)
-	if err != nil {
-		log.Fatalf("Error creating table: %v\n", err)
-	}
-}
+)
 
 type LoginRequest struct {
 	PhoneNo string `json:"phone_no"`
@@ -69,7 +43,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 	var req LoginRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid request body", http,StatusBadRequest)
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
@@ -77,12 +51,12 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	err := db.QueryRow(`SELECT EXSISTS(SELECT 1 FROM users WHERE phone_number=?)`,
 	otp, expiry, req.PhoneNo).Scan(&exsist)
 	if err != nil {
-		http.Error(w, "Error checking user", http,StatusInternalServerError)
+		http.Error(w, "Error checking user", http.StatusInternalServerError)
 		return
 	}
 
 	if !exsist {
-		http.Error(w, "Invalid Phone number or ID number", http,StatusUnauthorized)
+		http.Error(w, "Invalid Phone number or ID number", http.StatusUnauthorized)
 		return
 	}
 
@@ -98,7 +72,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 
 	if err := sendOTP(req.PhoneNo, otp); err != nil {
-		http.Error(w, "Error sending OTP", http,StatusInternalServerError)
+		http.Error(w, "Error sending OTP", http.StatusInternalServerError)
 		return
 	}
 
@@ -112,6 +86,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main(){
+	db.InitDB()
+	db.CreateTable()
 	http.HandleFunc("/login", loginHandler)
 
 	fmt.Println("Server is running on http://localhost:9000")
