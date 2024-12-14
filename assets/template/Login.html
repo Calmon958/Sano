@@ -1,0 +1,190 @@
+<html><head><base href="http://patienthealthai.example.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthWorker Login</title>
+<style>
+:root {
+    --primary: #2D5A86;
+    --secondary: #4A90E2;
+    --accent: #F5F7FA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.login-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: var(--secondary);
+}
+
+.error {
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+</style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="workerId">ID</label>
+                <input type="text" id="workerId" name="workerId" required="" placeholder="Enter your ID">
+                <div class="error" id="workerIdError">Please enter a valid Worker ID</div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required="" placeholder="Enter your phone number">
+                <div class="error" id="phoneError">Please enter a valid phone number</div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const workerId = document.getElementById('workerId').value;
+    const phone = document.getElementById('phone').value;
+    const workerIdError = document.getElementById('workerIdError');
+    const phoneError = document.getElementById('phoneError');
+    let isValid = true;
+
+    // Reset errors
+    workerIdError.style.display = 'none';
+    phoneError.style.display = 'none';
+
+    // Validate Worker ID (assuming it should be alphanumeric and at least 6 characters)
+    if (!/^[A-Za-z0-9]{6,}$/.test(workerId)) {
+        workerIdError.style.display = 'block';
+        document.getElementById('workerId').parentElement.classList.add('shake');
+        setTimeout(() => {
+            document.getElementById('workerId').parentElement.classList.remove('shake');
+        }, 500);
+        isValid = false;
+    }
+
+    // Validate phone number (simple validation for demonstration)
+    if (!/^\d{10,}$/.test(phone.replace(/[-()\s]/g, ''))) {
+        phoneError.style.display = 'block';
+        document.getElementById('phone').parentElement.classList.add('shake');
+        setTimeout(() => {
+            document.getElementById('phone').parentElement.classList.remove('shake');
+        }, 500);
+        isValid = false;
+    }
+
+    if (isValid) {
+        // Here you would typically make an API call to verify credentials
+        console.log('Login attempted with:', {
+            workerId,
+            phone
+        });
+        
+        // Simulate login success
+        const button = document.querySelector('button');
+        button.textContent = 'Logging in...';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            // Redirect to dashboard (replace with actual dashboard URL)
+            window.location.href = "https://patienthealthai.example.com/dashboard";
+        }, 1500);
+    }
+});
+
+// Format phone number as user types
+document.getElementById('phone').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 0) {
+        if (value.length <= 3) {
+            value = value;
+        } else if (value.length <= 6) {
+            value = value.slice(0,3) + '-' + value.slice(3);
+        } else {
+            value = value.slice(0,3) + '-' + value.slice(3,6) + '-' + value.slice(6,10);
+        }
+    }
+    e.target.value = value;
+});
+</script>
+
+</body></html>
