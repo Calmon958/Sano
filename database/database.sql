@@ -32,3 +32,14 @@ CREATE TABLE appointments (
 
 )
 
+-- doctor registration
+CREATE TABLE doctor_registration (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    title TEXT NOT NULL
+    id_number TEXT NOT NULL UNIQUE,
+    doctor_license TEXT NOT NULL UNIQUE,
+    physical_address TEXT NOT NULL,
+    organization TEXT,
+    phone_number TEXT NOT NULL CHECK(LENGTH(phone_number) = 10 AND phone_number GLOB '[0-9]*')
+);
