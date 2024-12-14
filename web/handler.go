@@ -18,7 +18,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := r.ParseMultipartForm(32 << 20) // 32MB max file size
+	err := r.ParseMultipartForm(32 << 20)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -31,19 +31,16 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	// Generate a unique file name
 	fileID := uuid.New().String()
 	fileExtension := filepath.Ext(header.Filename)
 	fileName := fileID + fileExtension
 
-	// Upload the file to Google Drive
 	driveFileID, err := uploadFileToGoogleDrive(fileName, file)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// Update the patient's medical record with the file information
 	err = updatePatientRecord(r.FormValue("patientID"), driveFileID)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -69,5 +66,3 @@ func uploadFileToGoogleDrive(fileName string, file io.Reader) (string, error) {
 
 	return uploadedFile.Id, nil
 }
-
-
