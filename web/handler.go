@@ -108,7 +108,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var exsist bool
-	err := db.QueryRow(`SELECT EXSISTS(SELECT 1 FROM users WHERE phone_number=?)`,
+	err := db.QueryRow(`SELECT EXSIST(SELECT 1 FROM users WHERE phone_number=?)`,
 		req.PhoneNo, req.IDNo).Scan(&exsist)
 	if err != nil {
 		http.Error(w, "Error checking user", http.StatusInternalServerError)
