@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HouseCall MD</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .icon-hover:hover {
+      background-color: #eeef;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active icon-hover" href="#">
+                <span data-feather="home"></span>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link icon-hover" href="#">
+                <span data-feather="calendar"></span>
+                Appointments
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link icon-hover" href="#">
+                <span data-feather="video"></span>
+                Video Calls
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link icon-hover" href="#">
+                <span data-feather="user"></span>
+                Profile
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">HouseCall MD</h1>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card icon-hover">
+              <div class="card-body">
+                <h5 class="card-title">Book Urgent Care</h5>
+                <p class="card-text">Request immediate house call</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card icon-hover">
+              <div class="card-body">
+                <h5 class="card-title">Schedule Visit</h5>
+                <p class="card-text">Book a future appointment</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card icon-hover">
+              <div class="card-body">
+                <h5 class="card-title">Video Consultation</h5>
+                <p class="card-text">Connect with doctor virtually</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Upcoming Appointments</h2>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Dr. Sarah Johnson</h5>
+              <small>Tomorrow at 10:00 AM</small>
+            </div>
+            <p class="mb-1">House Call - Regular Checkup</p>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Dr. Michael Chen</h5>
+              <small>Friday at 2:30 PM</small>
+            </div>
+            <p class="mb-1">Video Consultation - Follow-up</p>
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>
