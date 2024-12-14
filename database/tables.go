@@ -32,7 +32,7 @@ CREATE TABLE appointments (
     appointment_details TEXT NOT NULL,
     appointment_date TEXT NOT NULL,
     appointment_time TEXT NOT NULL,
-    document TEXT, --optional field for document upload
+    document TEXT,
     FOREIGN KEY( patient_id) REFERENCES patient_registration (id_number),
     FOREIGN KEY (doctor_id) REFERENCES doctor_registration (license)
 
@@ -44,7 +44,7 @@ const doctor_reg_table string = `
 CREATE TABLE doctor_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    title TEXT NOT NULL
+    title TEXT NOT NULL,
     doctor_id_number TEXT NOT NULL UNIQUE,
     doctor_license TEXT NOT NULL UNIQUE,
     physical_address TEXT NOT NULL,
