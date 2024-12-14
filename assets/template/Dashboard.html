@@ -1,0 +1,434 @@
+<html><head><base href="."><title>HealthConnect - Your Patient Portal</title><style>
+:root {
+  --primary: #2c5282;
+  --secondary: #4299e1;
+  --accent: #48bb78;
+  --light: #f7fafc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--light);
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #4a5568;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+}
+
+.features {
+  background-color: white;
+  padding: 4rem 2rem;
+}
+
+.features-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.feature-card {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--light);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animated-icon {
+  animation: pulse 2s infinite;
+}
+</style></head><body>
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M20 0C8.954 0 0 8.954 0 20s8.954 20 20 20 20-8.954 20-20S31.046 0 20 0zm0 36c-8.837 0-16-7.163-16-16S11.163 4 20 4s16 7.163 16 16-7.163 16-16 16z" fill="white"></path>
+        <path d="M20 8v24M8 20h24" stroke="white" stroke-width="4"></path>
+      </svg>
+      <span>Sano</span>
+    </div>
+    <div class="nav-links">
+      <a href="https://example.com/about">About</a>
+      <a href="https://example.com/services">Services</a>
+      <a href="https://example.com/contact">Contact</a>
+      <a href="javascript:void(0)" onclick="showLoginPopup()" class="nav-links">Login</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Your Health, Connected</h1>
+      <p>Access your healthcare information, schedule appointments, and communicate with your doctor - all in one secure platform.</p>
+      <a href="javascript:void(0)" class="cta-button" onclick="showRegistrationPopup()">Get Started</a>
+    </div>
+    <div class="hero-image">
+      <svg class="animated-icon" width="400" height="400" viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="180" stroke="var(--secondary)" stroke-width="4"></circle>
+        <path d="M200 100v200M100 200h200" stroke="var(--accent)" stroke-width="8"></path>
+        <circle cx="200" cy="200" r="60" fill="var(--primary)"></circle>
+      </svg>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 64 64" fill="var(--primary)">
+          <path d="M32 0C14.327 0 0 14.327 0 32s14.327 32 32 32 32-14.327 32-32S49.673 0 32 0zm0 58C17.641 58 6 46.359 6 32S17.641 6 32 6s26 11.641 26 26-11.641 26-26 26z"></path>
+          <path d="M32 16v16h16"></path>
+        </svg>
+        <h3>24/7 Access</h3>
+        <p>View your medical records and test results anytime, anywhere.</p>
+      </div>
+      
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 64 64" fill="var(--primary)">
+          <rect x="8" y="8" width="48" height="48" rx="4"></rect>
+          <path d="M20 32h24M32 20v24" stroke="white" stroke-width="4"></path>
+        </svg>
+        <h3>Online Appointments</h3>
+        <p>Schedule and manage your appointments with ease.</p>
+      </div>
+      
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 64 64" fill="var(--primary)">
+          <circle cx="32" cy="32" r="24"></circle>
+          <path d="M24 32s6 8 16 0" stroke="white" stroke-width="4"></path>
+        </svg>
+        <h3>Secure Messaging</h3>
+        <p>Communicate directly with your healthcare team.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Add smooth scroll behavior
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Add intersection observer for animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  });
+
+  document.querySelectorAll('.feature-card').forEach((card) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease-out';
+    observer.observe(card);
+  });
+});
+
+// Add popup functionality for registration
+function showRegistrationPopup() {
+  const popup = document.createElement('div');
+  popup.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  `;
+
+  const content = document.createElement('div');
+  content.style.cssText = `
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+  `;
+
+  const title = document.createElement('h2');
+  title.textContent = 'Choose Registration Type';
+  title.style.marginBottom = '1.5rem';
+  title.style.color = 'var(--primary)';
+
+  const patientBtn = document.createElement('button');
+  patientBtn.textContent = 'Register as Patient';
+  patientBtn.style.cssText = `
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+  `;
+  patientBtn.onclick = () => {
+    window.location.href = 'https://example.com/register/patient';
+  };
+
+  const workerBtn = document.createElement('button');
+  workerBtn.textContent = 'Register as Health Worker';
+  workerBtn.style.cssText = `
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+  `;
+  workerBtn.onclick = () => {
+    window.location.href = 'https://example.com/register/health-worker';
+  };
+
+  const closeBtn = document.createElement('button');
+  closeBtn.innerHTML = '&times;';
+  closeBtn.style.cssText = `
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  `;
+  closeBtn.onclick = () => {
+    document.body.removeChild(popup);
+  };
+
+  content.appendChild(closeBtn);
+  content.appendChild(title);
+  content.appendChild(patientBtn);
+  content.appendChild(workerBtn);
+  popup.appendChild(content);
+  document.body.appendChild(popup);
+
+  // Close popup when clicking outside
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      document.body.removeChild(popup);
+    }
+  });
+}
+
+// Add popup functionality for login
+function showLoginPopup() {
+  const popup = document.createElement('div');
+  popup.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  `;
+
+  const content = document.createElement('div');
+  content.style.cssText = `
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+  `;
+
+  const title = document.createElement('h2');
+  title.textContent = 'Choose Login Type';
+  title.style.marginBottom = '1.5rem';
+  title.style.color = 'var(--primary)';
+
+  const patientBtn = document.createElement('button');
+  patientBtn.textContent = 'Login as Patient';
+  patientBtn.style.cssText = `
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+  `;
+  patientBtn.onclick = () => {
+    window.location.href = 'https://example.com/login/patient';
+  };
+
+  const workerBtn = document.createElement('button');
+  workerBtn.textContent = 'Login as Health Worker';
+  workerBtn.style.cssText = `
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+  `;
+  workerBtn.onclick = () => {
+    window.location.href = 'https://example.com/login/health-worker';
+  };
+
+  const closeBtn = document.createElement('button');
+  closeBtn.innerHTML = '&times;';
+  closeBtn.style.cssText = `
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  `;
+  closeBtn.onclick = () => {
+    document.body.removeChild(popup);
+  };
+
+  content.appendChild(closeBtn);
+  content.appendChild(title);
+  content.appendChild(patientBtn);
+  content.appendChild(workerBtn);
+  popup.appendChild(content);
+  document.body.appendChild(popup);
+
+  // Close popup when clicking outside
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      document.body.removeChild(popup);
+    }
+  });
+}
+</script>
+</div>
+</body></html>
