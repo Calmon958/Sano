@@ -5,11 +5,6 @@ import (
 	"net/http"
 	"fmt"
 	"Sano/database"
-	//"database/sql"
-	// "os"
-	// "html/template"
-	// "log"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -62,14 +57,7 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 		}
 		gp.Id = id.String()
 
-		fmt.Printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gp.firstName, gp.lastName, gp.email, gp.phone_number, gp.year_of_birth, gp.doctor_id_number,gp.location, gp.license_number)
-        // db, err := sql.Open("sqlite3", "healthDB.db")
-        // if err != nil {
-        //     http.Error(w, "Error connecting to the database", http.StatusInternalServerError)
-        //     return
-        // }
-        // defer db.Close()
-		//add function to add gp struct to the database
+		//fmt.Printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gp.firstName, gp.lastName, gp.email, gp.phone_number, gp.year_of_birth, gp.doctor_id_number,gp.location, gp.license_number)
 		query := `
 		INSERT INTO  doctor_registration(first_name, last_name, email, year_of_birth, doctor_id_number,license_number,location, phone_number) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
