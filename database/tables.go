@@ -10,7 +10,7 @@ CREATE TABLE patients (
 ); 
 `
 
-//-- create patient registration table
+//patient registration table
 const patient_reg_table  string = `
 CREATE TABLE patient_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,7 +22,7 @@ CREATE TABLE patient_registration (
 );
 `
 
-
+// appointments table
 const apppointments_table string = `
 CREATE TABLE appointments (
     appointment_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +39,7 @@ CREATE TABLE appointments (
 
 );
 `
-
+// doctor registration table
 const doctor_reg_table string = `
 CREATE TABLE doctor_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,7 +53,7 @@ CREATE TABLE doctor_registration (
     phone_number TEXT NOT NULL CHECK(LENGTH(phone_number) = 10 AND phone_number GLOB '[0-9]*')
 );
 `
-
+// doctor report table
 const doctor_report_table string =`
 CREATE TABLE doctor_report (
     report_id INTEGER PRIMARY KEY AUTOINCREMENT,
