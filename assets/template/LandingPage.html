@@ -378,7 +378,7 @@ function showLoginPopup() {
   // Create the patient login form// Add popup functionality for registration
 
   const patientForm = document.createElement('form');
-  patientForm.action = 'https://example.com/login/patient';  // Action for patient login
+  patientForm.action = '/loginPatient';  // Action for patient login
   patientForm.method = 'GET';  // Method for form submission
 
   const patientBtn = document.createElement('button');
@@ -400,7 +400,7 @@ function showLoginPopup() {
 
   // Create the health worker login form
   const workerForm = document.createElement('form');
-  workerForm.action = 'https://example.com/login/health-worker';  // Action for health worker login
+  workerForm.action = 'loginDoctor';  // Action for health worker login
   workerForm.method = 'GET';  // Method for form submission
   
   const workerBtn = document.createElement('button');
