@@ -7,7 +7,7 @@ import (
 
 func LoginPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		err = templates.ExecuteTemplate(w, "LoginGP.html", nil)
+		err = templates.ExecuteTemplate(w, "LoginUser.html", nil)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -26,7 +26,7 @@ func LoginPatient(w http.ResponseWriter, r *http.Request) {
 
 func LoginDoctor(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		err = templates.ExecuteTemplate(w, "LoginUser.html", nil)
+		err = templates.ExecuteTemplate(w, "LoginGP.html", nil)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

@@ -54,7 +54,7 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 		//add function to addb
 
 
-		http.Redirect(w,r,"/LoginGP",http.StatusSeeOther)
+		http.Redirect(w,r,"/loginDoctor",http.StatusSeeOther)
 	}
 
 }
@@ -85,7 +85,7 @@ func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 
 
 		//redirect to login page
-		http.Redirect(w,r,"/LoginUser",http.StatusSeeOther)
+		http.Redirect(w,r,"/loginPatient",http.StatusSeeOther)
 	}
 
 
