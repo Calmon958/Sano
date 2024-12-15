@@ -28,16 +28,6 @@ func DoctorRecords(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func DoctorMedicalDocs(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodGet {
-		err = templates.ExecuteTemplate(w, "MedicalDocuments.html", nil)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-	}
-}
-
 func DoctorChat(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		err = templates.ExecuteTemplate(w, "DoctorChat.html", nil)

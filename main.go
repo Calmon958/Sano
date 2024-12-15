@@ -23,7 +23,6 @@ func main() {
 	http.HandleFunc("/DashboardPatient", handler.PatientPageHandler)
 	http.HandleFunc("/DashboardDoctor", handler.DoctorPageHandler)
 	http.HandleFunc("/DoctorRecord", handler.DoctorRecords)
-	http.HandleFunc("/DoctorDocuments", handler.DoctorMedicalDocs)
 	
 	
 	http.HandleFunc("/PatientRecord", handler.PatientRecord)
