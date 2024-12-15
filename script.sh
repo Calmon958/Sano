@@ -1,1 +1,0 @@
-watch -n 0.25 make format run

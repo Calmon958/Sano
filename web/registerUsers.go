@@ -3,7 +3,6 @@ package web
 import (
 	"github.com/gofrs/uuid"
 	"net/http"
-
 )
 
 type GeneralPractioner struct {
@@ -34,7 +33,6 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		
 	} else if r.Method == http.MethodPost {
 		r.ParseForm()
 		var gp GeneralPractioner
@@ -53,8 +51,7 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 
 		//add function to addb
 
-
-		http.Redirect(w,r,"/loginDoctor",http.StatusSeeOther)
+		http.Redirect(w, r, "/loginDoctor", http.StatusSeeOther)
 	}
 
 }
@@ -83,11 +80,8 @@ func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 		patient.Id = id.String()
 		//add function to add patient to the database
 
-
 		//redirect to login page
-		http.Redirect(w,r,"/loginPatient",http.StatusSeeOther)
+		http.Redirect(w, r, "/loginPatient", http.StatusSeeOther)
 	}
-
-
 
 }

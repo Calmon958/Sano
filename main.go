@@ -16,15 +16,14 @@ func main() {
 	http.HandleFunc("/loginPatient", handler.LoginPatient)
 	http.HandleFunc("/loginDoctor", handler.LoginDoctor)
 	http.HandleFunc("/", handler.HomeHandler)
-	
+
 	http.HandleFunc("/DocReg", handler.RegisterGp)
 	http.HandleFunc("/PatientReg", handler.RegisterPatient)
-	
+
 	http.HandleFunc("/DashboardPatient", handler.PatientPageHandler)
 	http.HandleFunc("/DashboardDoctor", handler.DoctorPageHandler)
 	http.HandleFunc("/DoctorRecord", handler.DoctorRecords)
-	
-	
+
 	http.HandleFunc("/PatientRecord", handler.PatientRecord)
 	http.HandleFunc("/PatientChat", handler.PatientChat)
 	http.HandleFunc("/PatientDocuments", handler.PatientDocument)

@@ -12,7 +12,7 @@ func PatientPageHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	
+
 }
 
 func PatientRecord(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +23,7 @@ func PatientRecord(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	
+
 }
 
 func PatientChat(w http.ResponseWriter, r *http.Request) {
@@ -34,7 +34,7 @@ func PatientChat(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	
+
 }
 
 func PatientDocument(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +45,7 @@ func PatientDocument(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	
+
 }
 
 func PatientProfile(w http.ResponseWriter, r *http.Request) {
@@ -56,7 +56,5 @@ func PatientProfile(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	
+
 }
-
-

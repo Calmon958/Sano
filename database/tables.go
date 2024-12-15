@@ -1,6 +1,6 @@
 package db
 
-const patients_table  string = `
+const patients_table string = `
 CREATE TABLE patients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     phone_number TEXT NOT NULL UNIQUE,
@@ -10,8 +10,8 @@ CREATE TABLE patients (
 ); 
 `
 
-//-- create patient registration table
-const patient_reg_table  string = `
+// -- create patient registration table
+const patient_reg_table string = `
 CREATE TABLE patient_registration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -21,7 +21,6 @@ CREATE TABLE patient_registration (
     phone_number TEXT NOT NULL CHECK(LENGTH(phone_number) = 10 AND phone_number GLOB '[0-9]*')
 );
 `
-
 
 const apppointments_table string = `
 CREATE TABLE appointments (
@@ -53,7 +52,7 @@ CREATE TABLE doctor_registration (
 );
 `
 
-const doctor_report_table string =`
+const doctor_report_table string = `
 CREATE TABLE doctor_report (
     report_id INTEGER PRIMARY KEY AUTOINCREMENT,
     report_name TEXT NOT NULL,

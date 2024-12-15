@@ -13,7 +13,6 @@ func DoctorPageHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-
 }
 
 func DoctorRecords(w http.ResponseWriter, r *http.Request) {
@@ -24,7 +23,6 @@ func DoctorRecords(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-
 
 }
 
@@ -37,7 +35,4 @@ func DoctorChat(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-
 }
-
-

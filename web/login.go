@@ -1,9 +1,8 @@
 package web
 
 import (
-	"net/http"	
+	"net/http"
 )
-
 
 func LoginPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
@@ -17,8 +16,8 @@ func LoginPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		//capture login data
 		//validate login data
-		
-		http.Redirect(w,r,"/DashboardPatient",http.StatusSeeOther) 
+
+		http.Redirect(w, r, "/DashboardPatient", http.StatusSeeOther)
 
 	}
 
@@ -36,8 +35,7 @@ func LoginDoctor(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		//capture login data
 		//validate login data
-		
-		http.Redirect(w,r,"/DashboardDoctor",http.StatusSeeOther) 
+
+		http.Redirect(w, r, "/DashboardDoctor", http.StatusSeeOther)
 	}
 }
-

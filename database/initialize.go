@@ -1,16 +1,17 @@
 package db
-import(
-	"log"
+
+import (
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
+	"log"
 )
 
 var (
-	DB *sql.DB
+	DB  *sql.DB
 	err error
 )
 
-func InitDB(){
+func InitDB() {
 	DB, err = sql.Open("sqlite3", "./database/healthDB.db")
 	if err != nil {
 		log.Fatal(err)
@@ -23,15 +24,12 @@ func InitDB(){
 	}
 }
 
-
 func CreateTable() error {
-	for _, table := range Tables{
+	for _, table := range Tables {
 		_, err := DB.Exec(table)
-		if err !=  nil {
+		if err != nil {
 			return err
 		}
 	}
 	return nil
 }
-
-

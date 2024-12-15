@@ -1,9 +1,9 @@
 package web
 
 import (
-	"net/http"
 	"html/template"
 	"log"
+	"net/http"
 )
 
 var templates *template.Template
@@ -25,4 +25,4 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-} 
+}

@@ -11,7 +11,7 @@ package web
 
 // func init() {
 // 	var err error
-	
+
 // 	db, err = sql.Open("sqlite3", "./mydb.sqlite")
 // 	if err != nil {
 // 		panic(err)
