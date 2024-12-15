@@ -1,125 +1,126 @@
-<html><head><base href="." />
-<meta charset="UTF-8">
-<title>Doctor Signup Portal</title>
-<style>
-  :root {
-    --primary: #2c3e50;
-    --secondary: #3498db;
-    --success: #27ae60;
-    --error: #e74c3c;
-  }
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Signup Portal</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --success: #27ae60;
+      --error: #e74c3c;
+    }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-  body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-  .signup-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 600px;
-  }
+    .signup-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+    }
 
-  h1 {
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-  }
+    h1 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
 
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
 
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-    font-weight: 500;
-  }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
 
-  input, select {
-    width: 100%;
-    padding: 0.8rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
 
-  input:focus, select:focus {
-    outline: none;
-    border-color: var(--secondary);
-  }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
 
-  .file-upload {
-    border: 2px dashed #e0e0e0;
-    padding: 1.5rem;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+    .file-upload {
+      border: 2px dashed #e0e0e0;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-  .file-upload:hover {
-    border-color: var(--secondary);
-    background: #f8f9fa;
-  }
+    .file-upload:hover {
+      border-color: var(--secondary);
+      background: #f8f9fa;
+    }
 
-  .upload-icon {
-    color: var(--secondary);
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
+    .upload-icon {
+      color: var(--secondary);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
 
-  button {
-    background: var(--secondary);
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+    button {
+      background: var(--secondary);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-  button:hover {
-    background: #2980b9;
-  }
+    button:hover {
+      background: #2980b9;
+    }
 
-  .file-name {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--primary);
-  }
+    .file-name {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
 
-  .error-message {
-    color: var(--error);
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-  }
-</style>
+    .error-message {
+      color: var(--error);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+  </style>
 </head>
 <body>
 
 <div class="signup-container">
   <h1>Doctor Registration</h1>
-  <form id="doctorSignup" onsubmit="return validateForm(event)">
+  <form id="doctorSignup" method="post" action="/DocReg">
     <div class="form-group">
       <label for="firstName">First Name*</label>
       <input type="text" id="firstName" name="firstName" required>
@@ -161,7 +162,7 @@
         <div class="upload-icon">📄</div>
         <p>Click to upload PDF</p>
         <p class="file-name" id="fileName"></p>
-        <input type="file" id="licenseFile" accept=".pdf" style="display: none" required>
+        <input type="file" id="licenseFile" accept=".pdf">
       </div>
     </div>
 
@@ -171,7 +172,7 @@
         <div class="upload-icon">📄</div>
         <p>Click to upload PDF</p>
         <p class="file-name" id="certFileName"></p>
-        <input type="file" id="certificationsFile" accept=".pdf" style="display: none">
+        <input type="file" id="certificationsFile" accept=".pdf">
       </div>
     </div>
 
@@ -190,52 +191,10 @@ document.getElementById('certificationsFile').addEventListener('change', functio
   document.getElementById('certFileName').textContent = fileName || '';
 });
 
-function validateForm(event) {
-  event.preventDefault();
-  
-  const yob = parseInt(document.getElementById('yob').value);
-  const currentYear = new Date().getFullYear();
-  
-  if (yob > currentYear - 18) {
-    alert('You must be at least 18 years old to register.');
-    return false;
-  }
-  
-  if (yob < currentYear - 100) {
-    alert('Please enter a valid year of birth.');
-    return false;
-  }
-
-  const phone = document.getElementById('phone').value;
-  if (!/^[0-9+\-\s]+$/.test(phone)) {
-    alert('Please enter a valid phone number.');
-    return false;
-  }
-
-  const licenseFile = document.getElementById('licenseFile').files[0];
-  if (!licenseFile) {
-    alert('Please upload your medical license.');
-    return false;
-  }
-
-  if (licenseFile.type !== 'application/pdf') {
-    alert('Please upload medical license in PDF format.');
-    return false;
-  }
-
-  const certFile = document.getElementById('certificationsFile').files[0];
-  if (certFile && certFile.type !== 'application/pdf') {
-    alert('Please upload certifications in PDF format.');
-    return false;
-  }
-
-  // If all validations pass, you would typically submit the form to a server
-  alert('Registration submitted successfully!');
-  return true;
-}
 
 // Set max year of birth to current year - 18
 document.getElementById('yob').max = new Date().getFullYear() - 18;
 </script>
 
-</body></html>
+</body>
+</html>

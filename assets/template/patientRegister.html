@@ -1,270 +1,187 @@
-<html><head><base href="/">
-<title>Patient Registration Form</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        margin: 0;
-        padding: 20px;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+<html>
+<head>
+    <title>Patient Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .container {
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        width: 100%;
-        max-width: 500px;
-    }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
 
-    h2 {
-        color: #2c3e50;
-        text-align: center;
-        margin-bottom: 30px;
-    }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-    label {
-        display: block;
-        margin-bottom: 8px;
-        color: #34495e;
-        font-weight: 500;
-    }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
 
-    input, select {
-        width: 100%;
-        padding: 12px;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        font-size: 16px;
-        transition: border-color 0.3s ease;
-    }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
 
-    input:focus, select:focus {
-        border-color: #3498db;
-        outline: none;
-    }
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
 
-    select {
-        background-color: white;
-        cursor: pointer;
-    }
+        select {
+            background-color: white;
+            cursor: pointer;
+        }
 
-    button {
-        background: #3498db;
-        color: white;
-        padding: 14px 20px;
-        border: none;
-        border-radius: 8px;
-        width: 100%;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
+        button {
+            background: #3498db;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
 
-    button:hover {
-        background: #2980b9;
-    }
+        button:hover {
+            background: #2980b9;
+        }
 
-    .success-message {
-        display: none;
-        color: #27ae60;
-        text-align: center;
-        margin-top: 20px;
-    }
+        .success-message {
+            display: none;
+            color: #27ae60;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-    .error {
-        border-color: #e74c3c;
-    }
+        .error {
+            border-color: #e74c3c;
+        }
 
-    .error-message {
-        color: #e74c3c;
-        font-size: 14px;
-        margin-top: 5px;
-        display: none;
-    }
-</style>
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>Patient Registration</h2>
-        <form id="patientForm" onsubmit="return validateForm(event)">
-    <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required="">
-        <div class="error-message" id="nameError">Please enter a valid name</div>
-    </div>
+        <form id="patientForm" method="POST" action="/PatientReg">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required="">
+                <div class="error-message" id="nameError">Please enter a valid name</div>
+            </div>
 
-    <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required="">
-        <div class="error-message" id="emailError">Please enter a valid email address</div>
-    </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required="">
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+            </div>
 
-    <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required="">
-        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
-    </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required="">
+                <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+            </div>
 
-    <div class="form-group">
-        <label for="idNumber">ID Number</label>
-        <input type="text" id="idNumber" name="idNumber" required="">
-        <div class="error-message" id="idError">Please enter a valid ID number</div>
-    </div>
+            <div class="form-group">
+                <label for="idNumber">ID Number</label>
+                <input type="text" id="idNumber" name="idNumber" required="">
+                <div class="error-message" id="idError">Please enter a valid ID number</div>
+            </div>
 
-    <div class="form-group">
-        <label for="county">County</label>
-        <select id="county" name="county" required="">
-            <option value="">Select County</option>
-            <option value="Nairobi">Nairobi</option>
-            <option value="Mombasa">Mombasa</option>
-            <option value="Kisumu">Kisumu</option>
-            <option value="Nakuru">Nakuru</option>
-            <option value="Uasin Gishu">Uasin Gishu</option>
-            <option value="Kiambu">Kiambu</option>
-            <option value="Machakos">Machakos</option>
-            <option value="Kajiado">Kajiado</option>
-            <option value="Kilifi">Kilifi</option>
-            <option value="Bungoma">Bungoma</option>
-        </select>
-        <div class="error-message" id="countyError">Please select a county</div>
-    </div>
+            <div class="form-group">
+                <label for="county">County</label>
+                <select id="county" name="county" required="">
+                    <option value="">Select County</option>
+                    <option value="Nairobi">Nairobi</option>
+                    <option value="Mombasa">Mombasa</option>
+                    <option value="Kisumu">Kisumu</option>
+                    <option value="Nakuru">Nakuru</option>
+                    <option value="Uasin Gishu">Uasin Gishu</option>
+                    <option value="Kiambu">Kiambu</option>
+                    <option value="Machakos">Machakos</option>
+                    <option value="Kajiado">Kajiado</option>
+                    <option value="Kilifi">Kilifi</option>
+                    <option value="Bungoma">Bungoma</option>
+                </select>
+                <div class="error-message" id="countyError">Please select a county</div>
+            </div>
 
-    <div class="form-group">
-        <label for="city">City/Town</label>
-        <select id="city" name="city" required="">
-            <option value="">Select City/Town</option>
-        </select>
-        <div class="error-message" id="cityError">Please select a city/town</div>
-    </div>
+            <div class="form-group">
+                <label for="city">City/Town</label>
+                <select id="city" name="city" required="">
+                    <option value="">Select City/Town</option>
+                </select>
+                <div class="error-message" id="cityError">Please select a city/town</div>
+            </div>
 
-    <button type="submit">Register</button>
-</form>
-        <div class="success-message" id="successMessage">Registration successful!</div>
+            <button type="submit">Register</button>
+        </form>
     </div>
 
     <script>
-const countyToCities = {
-    'Nairobi': ['Westlands', 'Karen', 'Eastleigh', 'Kasarani', 'Dagoretti', 'Kibera', 'Embakasi', 'Langata'],
-    'Mombasa': ['Nyali', 'Bamburi', 'Likoni', 'Changamwe', 'Kisauni', 'Tudor', 'Mtwapa'],
-    'Kisumu': ['Milimani', 'Kondele', 'Nyalenda', 'Manyatta', 'Mamboleo', 'Nyamasaria'],
-    'Nakuru': ['Nakuru Town', 'Naivasha', 'Gilgil', 'Molo', 'Njoro', 'Rongai'],
-    'Uasin Gishu': ['Eldoret', 'Burnt Forest', 'Turbo', 'Moiben', 'Langas', 'Kimumu'],
-    'Kiambu': ['Thika', 'Ruiru', 'Kikuyu', 'Limuru', 'Kabete', 'Juja'],
-    'Machakos': ['Machakos Town', 'Athi River', 'Mlolongo', 'Kangundo', 'Tala'],
-    'Kajiado': ['Ngong', 'Ongata Rongai', 'Kitengela', 'Kiserian', 'Kajiado Town'],
-    'Kilifi': ['Kilifi Town', 'Malindi', 'Watamu', 'Mariakani', 'Mtwapa'],
-    'Bungoma': ['Bungoma Town', 'Webuye', 'Kimilili', 'Chwele', 'Sirisia']
-};
+        const countyToCities = {
+            'Nairobi': ['Westlands', 'Karen', 'Eastleigh', 'Kasarani', 'Dagoretti', 'Kibera', 'Embakasi', 'Langata'],
+            'Mombasa': ['Nyali', 'Bamburi', 'Likoni', 'Changamwe', 'Kisauni', 'Tudor', 'Mtwapa'],
+            'Kisumu': ['Milimani', 'Kondele', 'Nyalenda', 'Manyatta', 'Mamboleo', 'Nyamasaria'],
+            'Nakuru': ['Nakuru Town', 'Naivasha', 'Gilgil', 'Molo', 'Njoro', 'Rongai'],
+            'Uasin Gishu': ['Eldoret', 'Burnt Forest', 'Turbo', 'Moiben', 'Langas', 'Kimumu'],
+            'Kiambu': ['Thika', 'Ruiru', 'Kikuyu', 'Limuru', 'Kabete', 'Juja'],
+            'Machakos': ['Machakos Town', 'Athi River', 'Mlolongo', 'Kangundo', 'Tala'],
+            'Kajiado': ['Ngong', 'Ongata Rongai', 'Kitengela', 'Kiserian', 'Kajiado Town'],
+            'Kilifi': ['Kilifi Town', 'Malindi', 'Watamu', 'Mariakani', 'Mtwapa'],
+            'Bungoma': ['Bungoma Town', 'Webuye', 'Kimilili', 'Chwele', 'Sirisia']
+        };
 
-document.getElementById('county').addEventListener('change', function() {
-    const selectedCounty = this.value;
-    const citySelect = document.getElementById('city');
-    const cities = countyToCities[selectedCounty] || [];
-    
-    // Clear existing options except the first one
-    citySelect.innerHTML = '<option value="">Select City/Town</option>';
+        document.getElementById('county').addEventListener('change', function() {
+            const selectedCounty = this.value;
+            const citySelect = document.getElementById('city');
+            const cities = countyToCities[selectedCounty] || [];
+            
+            // Clear existing options except the first one
+            citySelect.innerHTML = '<option value="">Select City/Town</option>';
 
-    // Add new city options
-    cities.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city;
-        option.textContent = city;
-        citySelect.appendChild(option);
-    });
-});
+            // Add new city options
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        });
 
-function validateForm(event) {
-    event.preventDefault();
-    
-    let isValid = true;
-    const nameRegex = /^[a-zA-Z\s]{2,50}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\d{10}$/;
-    const idRegex = /^[A-Z0-9]{6,12}$/;
-
-    // Name validation
-    const name = document.getElementById('name');
-    if (!nameRegex.test(name.value)) {
-        showError(name, 'nameError');
-        isValid = false;
-    } else {
-        hideError(name, 'nameError');
-    }
-
-    // Email validation
-    const email = document.getElementById('email');
-    if (!emailRegex.test(email.value)) {
-        showError(email, 'emailError');
-        isValid = false;
-    } else {
-        hideError(email, 'emailError');
-    }
-
-    // Phone validation
-    const phone = document.getElementById('phone');
-    if (!phoneRegex.test(phone.value)) {
-        showError(phone, 'phoneError');
-        isValid = false;
-    } else {
-        hideError(phone, 'phoneError');
-    }
-
-    // ID validation
-    const idNumber = document.getElementById('idNumber');
-    if (!idRegex.test(idNumber.value)) {
-        showError(idNumber, 'idError');
-        isValid = false;
-    } else {
-        hideError(idNumber, 'idError');
-    }
-
-    // County validation
-    const county = document.getElementById('county');
-    if (county.value === '') {
-        showError(county, 'countyError');
-        isValid = false;
-    } else {
-        hideError(county, 'countyError');
-    }
-
-    // City validation
-    const city = document.getElementById('city');
-    if (city.value === '') {
-        showError(city, 'cityError');
-        isValid = false;
-    } else {
-        hideError(city, 'cityError');
-    }
-
-    if (isValid) {
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('patientForm').reset();
-        setTimeout(() => {
-            document.getElementById('successMessage').style.display = 'none';
-        }, 3000);
-    }
-
-    return false;
-}
-
-function showError(input, errorId) {
-    input.classList.add('error');
-    document.getElementById(errorId).style.display = 'block';
-}
-
-function hideError(input, errorId) {
-    input.classList.remove('error');
-    document.getElementById(errorId).style.display = 'none';
-}
-</script>
-
-</body></html>
+    </script>
+</body>
+</html>

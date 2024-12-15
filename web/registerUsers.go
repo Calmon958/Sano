@@ -52,6 +52,9 @@ func RegisterGp(w http.ResponseWriter, r *http.Request) {
 		gp.Id = id.String()
 
 		//add function to addb
+
+
+		http.Redirect(w,r,"/loginDoctor",http.StatusSeeOther)
 	}
 
 }
@@ -78,7 +81,13 @@ func RegisterPatient(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		patient.Id = id.String()
+		//add function to add patient to the database
+
+
+		//redirect to login page
+		http.Redirect(w,r,"/loginUser",http.StatusSeeOther)
 	}
 
-	//add function to add patient to the database
+
+
 }
